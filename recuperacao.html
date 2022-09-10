@@ -20,7 +20,13 @@
     <button onclick="analisar()">Analisar</button><br>
 
     <span id="msg"></span>
-    <img id="img" src="">
+
+    <img id="livre" src="https://www.thefamouspeople.com/profiles/images/murray-rothbard-3.jpg" 
+    style="height: 180px; display: none">
+
+    <img id="quaseLivre" src="https://fee.org.es/media/38618/milton-friedman_free-to-choose.jpg?anchor=center&mode=crop&width=1200&rnd=132485494780000000" 
+    style="height: 180px; display: none">
+
 </body>
 </html>
 <script>
@@ -40,7 +46,7 @@
 
             if(paisGrau > 80){
                 paises.push({nome: paisNome, populacao: paisPopulacao, grau: "Livre",
-                            idh: 0.85, desemprego: 5, foto: 'https://www.thefamouspeople.com/profiles/images/murray-rothbard-3.jpg'});   
+                            idh: 0.85, desemprego: 5});   
 
             }else if(paisGrau > 70){
                 paises.push({nome: paisNome, populacao: paisPopulacao, grau: "Quase livre",
@@ -68,7 +74,10 @@
 
     function analisar(){
 
+        msg.innerHTML = '';
+
         for (i = 0; i <= paises.length; i++){
+
 
             msg.innerHTML += `País: ${paises[i].nome}<br> 
                 Categoria: ${paises[i].grau}<br>
@@ -76,7 +85,13 @@
                 IDH médio provável: ${paises[i].idh}<br>
                 Desemprego médio provável: ${paises[i].desemprego}%, talvez 
                 ${(paises[i].desemprego/100)*paises[i].populacao} estejam sem emprego<br>`
-                img.src += `${paises[i].foto}`;
+
+                if(paises[i].grau == "Livre"){
+                livre.style.display = "block";
+            }else
+                if(paises[i].grau == "Quase livre"){
+                quaseLivre.style.display = "block";
+            }
         }
     }
 
