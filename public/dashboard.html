@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/grafico.css">
+</head>
+<body style="display: flex;">
+
+    <div class="header">
+        <div class="voltar" onclick="voltar()">Voltar aos jogos</div>
+
+        <div class="zerar" onclick="zerarTodos()">Zerar gráficos</div>
+    </div>
+
+    <div class="banner">
+
+    <div class="graficos">
+        <span class="titulo">Cruzadinha</span>
+        <canvas id="myChart" class="chart"></canvas>
+        <span class="zerarEste" onclick="zerar1()">Zerar gráfico</span>
+      </div>
+
+    <div class="graficos">
+        <span class="titulo">Conversão</span>
+        <canvas id="myChart2" class="chart"></canvas>
+        <span class="zerarEste" onclick="zerar2()">Zerar gráfico</span>
+      </div>
+
+      <div class="graficos">
+        <span class="titulo">NodeJs</span>
+        <canvas id="myChart3" class="chart"></canvas>
+        <span class="zerarEste" onclick="zerar3()">Zerar gráfico</span>
+      </div>
+
+    </div>
+</body>
+
+<script>
+
+    function voltar(){
+        window.location = "index.html"
+    };
+  
+    const dados = {
+        labels: [
+        'Sua pontuação',
+        'Pontuação total'
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [300, 50],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4
+      }]
+    };
+
+    var a = 90;
+
+    const dados2 = {
+        labels: [
+          'Sua pontuação',
+          'Quantos pontos faltam para total (110)',
+        ],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [a, 110 - a],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)'
+          ],
+          hoverOffset: 4
+        }]
+      };
+
+      const dados3 = {
+        labels: [
+          'Sua pontuação',
+          'Pontuação total',
+        ],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [110, 110],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)'
+          ],
+          hoverOffset: 4
+        }]
+      };
+  
+    const config = {
+      type: 'doughnut',
+      data: dados,
+      options: {}
+    };
+
+    const config2 = {
+        type: 'doughnut',
+        data: dados,
+        options: {}
+    };
+
+    const config3 = {
+        type: 'doughnut',
+        data: dados2,
+      };
+
+
+
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    const myChart2 = new Chart(
+      document.getElementById('myChart2'),
+      config2
+    );
+
+    const myChart3 = new Chart(
+      document.getElementById('myChart3'),
+      config3
+    );
+
+  </script>
+
+</html>

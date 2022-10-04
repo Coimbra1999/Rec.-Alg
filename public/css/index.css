@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: monospace;
+    font-size: 1.3125rem;
+    height: 100vh;
+}
+
+.banner{
+    height: 90vh;
+    width: auto;
+    background: #222;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    width: 100vw;
+    height: 10vh;
+    border-bottom: 2px solid rgb(97, 114, 222);
+    background: #222;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    justify-content: end;
+    align-items: center;
+}
+
+.abas a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}
+
+.abas a:hover{
+    border-bottom: solid 1px white;
+}
+
+.box-game {
+    border: 2px solid rgb(97, 114, 222);
+    height: 70%;
+    width: 30%;
+    
+}
+
+.itens {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    place-items: center;
+    margin: 5%;
+}
+
+
+.titulo {
+    font-size: 1.6rem;
+    
+    margin-top: 2%;
+}
+
+.btn-game{
+    height: 10%;
+    width: 70%;
+    border:2px solid  white;
+    place-items: center;
+    text-align: center;
+    display: grid;
+    border-radius: 5px;
+}
+
+.btn-game button{
+    font-size: 1.4rem;
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-game:hover{
+    background: #00b0ff;
+    transition: all ease-in-out 200ms;
+}
+

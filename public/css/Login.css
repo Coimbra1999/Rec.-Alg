@@ -1,0 +1,132 @@
+body {
+    margin: 0%;
+    background-color: #222;
+}
+
+.header {
+    width: auto;
+    height: 9vh;
+    border-bottom: 2px solid rgb(97, 114, 222);
+    display: flex;
+    align-items: center;
+}
+
+.voltar{
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    border: 2px solid white;
+    font-family: monospace;
+    font-size: 1.3125rem;
+}
+
+#icone {
+    width: 50px;
+    height: 50px;
+    filter: invert(84%) sepia(66%) saturate(2580%) hue-rotate(358deg) brightness(106%) contrast(103%);
+    margin-left: 5vw;
+}
+
+.banner {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background: url(../img/running.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#erro{
+    width: 20%;
+    height: 10%;
+    margin-left: 40px;
+    margin-bottom: 200px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.842);
+    border: solid 1px rgb(97, 114, 222);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    padding: 15px;
+    padding-right: 10px;
+}
+
+#mensagem_erro {
+    color: white;
+    font-family: var(--fonte-principal);
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.login {
+    width: 30%;
+    height: 50%;
+    margin-left: 90px;
+    border: 2px rgb(97, 114, 222) solid;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.842);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.log {
+    color: white;
+    font-size: 30px;
+}
+
+.campos {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ipt {
+    height: 25px;
+    width: 200px;
+    border-radius: 7px;
+    border: 0;
+    border-bottom: 2px solid gray;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+input::placeholder{
+    color: gray;
+  }
+
+input:hover, input:focus{
+    border: 0;
+    border-bottom: 2px solid rgb(97, 114, 222);
+}
+
+.bt {
+    background-color: rgb(97, 114, 222);
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    padding: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif(--fonte-principal);
+    margin-top: 15px;
+}
+
+.frase {
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: none;
+}
+
+.frase:hover{
+    color: rgb(97, 114, 222);
+}

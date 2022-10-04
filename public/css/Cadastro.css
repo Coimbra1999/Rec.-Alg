@@ -1,0 +1,134 @@
+body {
+    margin: 0%;
+    background-color: #222;
+    font-family: monospace;
+}
+
+.header {
+    width: auto;
+    height: 9vh;
+    border-bottom: 2px solid rgb(97, 114, 222);
+    display: flex;
+    align-items: center;
+}
+
+.voltar{
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    border: 2px solid white;
+    font-family: monospace;
+    font-size: 1.3125rem;
+}
+
+#icone {
+    width: 50px;
+    height: 50px;
+    filter: invert(84%) sepia(66%) saturate(2580%) hue-rotate(358deg) brightness(106%) contrast(103%);
+    margin-left: 5vw;
+}
+
+.banner {
+    width: auto;
+    height: 90vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background: url(../img/running.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#erro{
+    width: 20%;
+    height: 10%;
+    margin-left: 40px;
+    margin-bottom: 350px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.842);
+    border: solid 1px rgb(97, 114, 222);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    padding: 15px;
+    padding-right: 10px;
+}
+
+#mensagem_erro {
+    color: white;
+    font-family: var(--fonte-principal);
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.cadastre {
+    width: 40%;
+    height: 70%;
+    margin-left: 50px;
+    border: solid 2px rgb(97, 114, 222);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.842);
+}
+
+.cad {
+    color: white;
+    font-size: 35px;
+}
+
+.campos {
+    height: 80%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.ipt {
+    height: 25px;
+    width: 200px;
+    border-radius: 7px;
+    border: 0;
+    border-bottom: 2px solid gray;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+input::placeholder{
+    color: gray;
+  }
+
+input:hover, input:focus{
+    border: 0;
+    border-bottom: 2px solid rgb(97, 114, 222);
+}
+
+.bt {
+    background-color: rgb(97, 114, 222);
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    padding: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif(--fonte-principal);
+}
+
+.frase {
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: none;
+}
+
+.frase:hover{
+    color: rgb(97, 114, 222);
+}

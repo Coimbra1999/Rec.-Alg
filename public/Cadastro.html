@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./css/Cadastro.css">
+</head>
+<body>
+    <div class="header">
+        <a href="index.html"><div class="voltar">Voltar aos jogos</div></a>
+    </div>
+    <div class="banner">
+
+        <div class="cadastre">
+
+            <div class="cad">Seja bem vindo!</div>
+
+            <div class="campos">
+                <br><input type="Text" class="ipt" id="nome_ipt" 
+                placeholder="Seu nome">
+
+                <br><input type="Text" class="ipt" id="email_ipt" 
+                placeholder="Seu e-mail@email.com">
+
+                <br><input type="password" class="ipt" id="senha_ipt" 
+                placeholder="Senha">
+
+                <br><input type="password" class="ipt" id="confirm_ipt" 
+                placeholder="Confirmação de senha">
+        </div>
+        <div class="botao"><button class="bt" onclick="cadastrar()">Cadastrar</button></div>
+        <h6><a href="login.html" class="frase">Já está cadastrado? Entrar</a></h6>
+        </div>
+
+        <div id="erro">
+            <span id="mensagem_erro"></span>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    console.log("Antes de cadastrar")
+    function cadastrar() {
+
+        var nomeVar = nome_ipt.value;
+        var emailVar = email_ipt.value;
+        var senhaVar = senha_ipt.value;
+        var confirmVar = confirm_ipt.value;
+        
+        if (nomeVar == "" || emailVar == "" 
+        || senhaVar == "" || confirmVar == "") {
+            erro.style.display = 'block'
+            setTimeout(()=>(
+                erro.style.display = 'none'
+            ), 5000);
+            mensagem_erro.innerHTML = "Preencha todos os campos!";
+            return false;
+        }
+
+        else if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            erro.style.display = 'block'
+            setTimeout(()=>(
+                erro.style.display = 'none'
+            ), 5000);
+            mensagem_erro.innerHTML = "Email errado. Utilize @ e '.com'!";
+            // finalizarAguardar();
+            return false;
+        }
+
+        if (senhaVar != confirmVar) {
+            erro.style.display = 'block'
+            setTimeout(()=>(
+                erro.style.display = 'none'
+            ), 5000);
+            mensagem_erro.innerHTML = "As senhas devem ser iguais!";
+            // finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+        console.log("depois de cadastrar")
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("Recuperando valores")
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                erro.style.display = "block"
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
+ 
+                setTimeout(() => {
+                    window.location = "Login.html";
+                }, "2000")
+                
+                limparFormulario();
+                finalizarAguardar();
+                // finalizarAguardar();
+            } else {
+                console.log(sexo)
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        erro.style.display = "none"
+    }
+</script>

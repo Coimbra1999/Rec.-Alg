@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+
+        
+        <div class="header">
+            <div class="abas"><a href="./Cadastro.html">Cadastre-se</a></div>
+            <div class="abas"><a>|</a></div>
+            <div class="abas"><a href="./Login.html">Login</a></div>
+        </div>
+
+        <div class="banner">
+        
+        <div class="box-game">
+
+            <div class="itens">
+
+                <div class="titulo">
+                    <h3>Jogo de Arq Comp</h3>
+                </div>
+
+                <div class="btn-game">
+                    <button onclick="selecionar1()">Cruzadinha</button>
+                </div>
+
+                <div class="btn-game">
+                    <button onclick="selecionar2()">Conversão</button>
+                </div>
+
+                <div class="btn-game">
+                    <button onclick="selecionar3()">Quiz</button>
+                </div>
+
+                <span id="mensagem">Selecione Seu Jogo</span>
+
+                <div class="btn-game">
+                    <button onclick="selecionar4()">Ver sua pontuação</button>
+                </div>
+
+                <div id="effect" style="width: 0; background:#fff; height:3px; display: block;"></div>
+            </div>
+        </div>
+    </div>
+    </main>
+
+</body>
+</html>
+
+
+<script>
+
+
+    var barra = 100;
+    var mensagem = document.querySelector('#mensagem')
+
+    function selecionar1(){
+
+        if (sessionStorage.NOME_USUARIO == undefined) {
+            window.location = "Cadastro.html";
+        }else{
+
+        mensagem.textContent = "Te direcionando para o cruzadinha"
+        effect.style.width = barra + '%';
+        effect.style.transition = 'all ease 1500ms'
+        setTimeout(() =>{
+
+            window.location = "cruzadinha.html"
+            
+        }, 2000)
+
+    }
+}
+    
+    function selecionar2(){
+
+        if (sessionStorage.NOME_USUARIO == undefined) {
+            window.location = "Cadastro.html";
+        }else{
+
+        mensagem.textContent = "Te direcionando para o conversão"
+        effect.style.width = barra + '%';
+        effect.style.transition = 'all ease 1500ms'
+        setTimeout(() =>{
+
+            window.location = "conversao.html"
+
+        }, 2000)
+
+    }
+}
+    function selecionar3(){
+
+        if(sessionStorage.NOME_USUARIO == undefined){
+            window.location = "Cadastro.html"
+        }else{
+
+        mensagem.textContent = "Te direcionando para o quiz"
+        effect.style.width = barra + '%';
+        effect.style.transition = 'all ease 1500ms'
+        setTimeout(() =>{
+
+            window.location = "quiz.html"
+
+        }, 2000)
+
+    }
+}
+
+    function selecionar4(){
+
+        mensagem.textContent = "Te direcionando para o gráfico"
+        effect.style.width = barra + '%';
+        effect.style.transition = 'all ease 1500ms'
+        setTimeout(() =>{
+
+            window.location = "dashboard.html";
+
+        }, 2000)
+
+    }
+
+</script>

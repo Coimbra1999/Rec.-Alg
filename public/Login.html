@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/Login.css">
+</head>
+<body>
+    <div class="header">
+        <a href="index.html"><div class="voltar">Voltar aos jogos</div></a>
+    </div>
+
+    <div class="banner">
+
+        <div class="login">
+            <div class="log">
+                <p>Entre</p>
+            </div>
+            <div class="campos">
+                <br><input id="email_ipt" class="ipt" type="text" placeholder="Seu e-mail@email.com">
+
+                <br><input id="senha_ipt" class="ipt" type="password" placeholder="Senha"
+                >
+                
+            </div>
+            <div><button class="bt" onclick="entrar()">Login</button></div>
+            <h6><a href="cadastro.html" class="frase">Ainda não é cadastrado? Criar conta</a></h6>
+        </div>
+
+        <div id="erro">
+            <span id="mensagem_erro"></span>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+
+    function entrar() {
+        // aguardar();
+
+        var emailVar = email_ipt.value;
+        var senhaVar = senha_ipt.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            erro.style.display = "block";
+            setTimeout(()=>(
+                erro.style.display = 'none'
+            ), 5000);
+            mensagem_erro.innerHTML = "Preencha todos os campos!";
+            // finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "Index.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        erro.style.display = "none"
+    }
+
+</script>
