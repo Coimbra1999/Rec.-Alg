@@ -87,15 +87,15 @@
   
     const dados = {
         labels: [
+        'Restante para o total',
         'Sua pontuação',
-        'Pontuação total'
       ],
       datasets: [{
         label: 'My First Dataset',
-        data: [conversao, node],
+        data: [(110 - conversao), conversao],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)'
+          'rgb(54, 162, 235)',
+          'rgb(255, 99, 132)'
         ],
         hoverOffset: 4
       }]
