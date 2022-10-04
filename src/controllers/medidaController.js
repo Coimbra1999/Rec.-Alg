@@ -5,11 +5,13 @@ function grafico(req, res) {
 
     var idUsuarioVar = req.body.idUsuarioServer;
     var conversao = req.body.conversaoServer;
+    var node = req.body.nodeServer;
 
     console.log(idUsuarioVar)
     console.log(conversao)
+    console.log(node)
     
-    medidaModel.grafico(idUsuarioVar, conversao)
+    medidaModel.grafico(idUsuarioVar, conversao, node)
         .then(
             function (resultado) {
                 res.json(resultado);

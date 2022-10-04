@@ -61,6 +61,7 @@
             body: JSON.stringify({
                 idUsuarioServer: idUsuarioVar,
                 conversaoServer: conversao,
+                nodeServer: node,
             })
         }).then(function (resposta) {
             resposta.json().then(function(response){
@@ -68,9 +69,10 @@
                 console.log("resposta: ", resposta);
                 console.log(typeof(response))
 
-                // var quantidadeFut = response[0].quantidade;
+                var conversao = response[0].pontos;
+                var node = response[1].pontos;
 
-                // plotarGraficos(quantidadeFut)
+                plotarGraficos(conversao, node)
             })
 
         }).catch(function (resposta) {
@@ -80,6 +82,8 @@
 
         return false;
     }
+
+    function plotarGraficos(conversao, node) {
   
     const dados = {
         labels: [
@@ -88,7 +92,7 @@
       ],
       datasets: [{
         label: 'My First Dataset',
-        data: [300, 50],
+        data: [conversao, node],
         backgroundColor: [
           'rgb(255, 99, 132)',
           'rgb(54, 162, 235)'
@@ -164,7 +168,7 @@
       document.getElementById('myChart3'),
       config3
     );
-
+    }
   </script>
 
 </html>
