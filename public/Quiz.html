@@ -290,10 +290,41 @@ function fimDoJogo() {
 
     // OCULTAR O ARTICLE DA QUESTAO
     articleQuestoes.style.display = 'none'
-
-    setTimeout(function() {
-        pontos = 0 // zerar placar
-        location.reload();
-    }, 2000)
+    pontosNode()
 }
+
+    var idUsuarioVar = sessionStorage.ID_USUARIO;
+    var idJogoVar = 2;
+
+    function pontosNode(){
+
+    fetch("/usuarios/pontosNode", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            pontosServer: placar,
+            idUsuarioServer: idUsuarioVar,
+            idJogoServer: idJogoVar,
+        })
+    }).then(function (resposta) {
+        console.log("Recuperando valores")
+        console.log("resposta: ", resposta);
+
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+    });
+
+    return false;
+
+    // setTimeout(function() {
+    //     pontos = 0 // zerar placar
+    //     location.reload();
+    // }, 2000)
+}
+
 </script>

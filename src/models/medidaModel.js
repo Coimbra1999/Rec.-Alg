@@ -1,22 +1,13 @@
 var database = require("../database/config");
 
-function grafico(graficoVar) {
+function grafico(idUsuarioVar, conversao) {
     var instrucao = `
-    select;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function pontosConversao(idJogo, idUsuario, pontosConversao) {
-    var instrucao = `
-    insert into pontuacao value(${idJogo}, ${idUsuario}, ${pontosConversao});
+    select * from pontuacao where fkJogador = ${idUsuarioVar} and fkJogo = ${conversao};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 module.exports = {
-    grafico,
-    pontosConversao
+    grafico
 }

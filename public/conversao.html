@@ -40,7 +40,11 @@
             
         </section>
 
-        <footer class='centro'><div class="voltar" onclick="voltar()">Voltar aos jogos</div></footer>
+        <footer class='centro'>
+            <div class="voltar" onclick="voltar()">Voltar aos jogos</div>
+            <!-- <div class="voltar" onclick="pontosConversao()">Cadastrar</div> -->
+        </footer>
+
     </main>
 
 </body>
@@ -267,36 +271,6 @@ function verificarSeAcertou(nQuestao, resposta) {
         }
     }, 250)
     desbloquearAlternativas()
-
-}
-
-var idUsuarioVar = sessionStorage.ID_USUARIO;
-    var idJogo = 1;
-
-    function pontosConversao(){
-
-    fetch("/medidas/pontosConversao", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            pontosServer: pontos,
-            idUsuarioServer: idUsuarioVar,
-            idjogoServer: idjogoVar
-        })
-    }).then(function (resposta) {
-        console.log("Recuperando valores")
-        console.log("resposta: ", resposta);
-
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
-    });
-
-    return false;
 }
 
 function fimDoJogo() {
@@ -320,10 +294,40 @@ function fimDoJogo() {
 
     // OCULTAR O ARTICLE DA QUESTAO
     articleQuestoes.style.display = 'none'
-
-    setTimeout(function() {
-        pontos = 0 // zerar placar
-        location.reload();
-    }, 2000)
+    pontosConversao()
 }
+    var idUsuarioVar = sessionStorage.ID_USUARIO;
+    var idJogoVar = 1;
+
+    function pontosConversao(){
+
+    fetch("/usuarios/pontosConversao", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            pontosServer: placar,
+            idUsuarioServer: idUsuarioVar,
+            idJogoServer: idJogoVar,
+        })
+    }).then(function (resposta) {
+        console.log("Recuperando valores")
+        console.log("resposta: ", resposta);
+
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+    });
+
+    return false;
+
+    // setTimeout(function() {
+    //     pontos = 0 // zerar placar
+    //     location.reload();
+    // }, 2000)
+}
+
 </script>

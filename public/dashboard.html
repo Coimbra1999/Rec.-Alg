@@ -44,6 +44,42 @@
     function voltar(){
         window.location = "index.html"
     };
+
+    var idUsuarioVar = sessionStorage.ID_USUARIO;
+    var conversao = 1;
+    var node = 2;
+    var cruzadinha = 3;
+
+    grafico()
+
+    function grafico() {
+        fetch("/medidas/grafico", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuarioVar,
+                conversaoServer: conversao,
+            })
+        }).then(function (resposta) {
+            resposta.json().then(function(response){
+                console.log(response)
+                console.log("resposta: ", resposta);
+                console.log(typeof(response))
+
+                // var quantidadeFut = response[0].quantidade;
+
+                // plotarGraficos(quantidadeFut)
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
   
     const dados = {
         labels: [

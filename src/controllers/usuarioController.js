@@ -99,10 +99,67 @@ function cadastrar(req, res) {
     }
 }
     
+function pontosConversao(req, res) {
+    console.log(req.body);
+
+    var usuarioVar = req.body.idUsuarioServer;
+    var jogoVar = req.body.idJogoServer;
+    var pontosConversaoVar = req.body.pontosServer;
+
+    console.log(pontosConversaoVar)
+    console.log(usuarioVar)
+    console.log(jogoVar)
+    
+    usuarioModel.pontosConversao(jogoVar, usuarioVar, pontosConversaoVar)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function pontosNode(req, res) {
+    console.log(req.body);
+
+    var usuarioVar = req.body.idUsuarioServer;
+    var jogoVar = req.body.idJogoServer;
+    var pontosNodeVar = req.body.pontosServer;
+
+    console.log(pontosNodeVar)
+    console.log(usuarioVar)
+    console.log(jogoVar)
+    
+    usuarioModel.pontosNode(jogoVar, usuarioVar, pontosNodeVar)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    testar
+    testar,
+    pontosConversao,
+    pontosNode
 }

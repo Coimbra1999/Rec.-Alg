@@ -33,10 +33,28 @@ function cadastrar(nome, email, senha) {
             return database.executar(instrucao);
         }
 
+function pontosConversao(jogoVar, usuarioVar, pontosConversaoVar) {
+    var instrucao = `
+    insert into pontuacao value(${jogoVar}, ${usuarioVar}, ${pontosConversaoVar});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function pontosNode(jogoVar, usuarioVar, pontosNodeVar) {
+    var instrucao = `
+    insert into pontuacao value(${jogoVar}, ${usuarioVar}, ${pontosNodeVar});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 console.log("Instrução mysql")
 
 module.exports = {
     entrar,
     cadastrar,
     listar,
+    pontosConversao,
+    pontosNode
 };

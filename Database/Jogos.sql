@@ -1,6 +1,6 @@
 create database Jogos;
 use Jogos;
-
+drop database Jogos;
 
 create table Usuario (
 id int primary key auto_increment,
@@ -14,9 +14,9 @@ idJogo int primary key,
 nomeJogo VARCHAR(45)
 );
 
-insert into jogo values(1, "Cruzadinha"),
-					   (2, "Conversao"),
-					   (3, "Node");
+insert into jogo values(1, "Conversao"),
+					   (2, "Node"),
+					   (3, "Cruzadinha");
                        
 create table pontuacao(
 fkJogo int,
@@ -26,6 +26,8 @@ foreign key (fkJogador) references Usuario(id),
 pontos int,
 primary key (fkJogo, fkJogador)
 );                       
+
+drop table pontuacao;
 
 select * from usuario;
 select * from pontuacao;

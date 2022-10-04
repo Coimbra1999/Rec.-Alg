@@ -21,4 +21,13 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
+router.post("/pontosConversao", function (req, res) {
+    usuarioController.pontosConversao(req, res);
+  
+});
+
+router.post("/pontosNode", function (req, res) {
+    usuarioController.pontosNode(req, res);
+
+})
 module.exports = router;
