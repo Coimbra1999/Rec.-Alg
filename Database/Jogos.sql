@@ -24,10 +24,17 @@ fkJogador int,
 foreign key (fkJogo) references jogo(idJogo),
 foreign key (fkJogador) references Usuario(id),
 pontos int,
-primary key (fkJogo, fkJogador)
+horario datetime,
+primary key (fkJogo, fkJogador, horario)
 );                       
 
+insert into Usuario value(10, "Guilherme", "guilherme@email.com", 123);
+insert into pontuacao values(1, 10, 50, now());
+insert into pontuacao values(1, 10, 50, now());
+insert into pontuacao values(2, 10, 50, now());
+insert into pontuacao values(1, 10, 70, now());
 drop table pontuacao;
 
 select * from usuario;
 select * from pontuacao;
+select pontos, max(horario) from pontuacao where fkJogador = 10;

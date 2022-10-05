@@ -12,28 +12,18 @@
 
     <div class="header">
         <div class="voltar" onclick="voltar()">Voltar aos jogos</div>
-
-        <div class="zerar" onclick="zerarTodos()">Zerar gráficos</div>
     </div>
 
     <div class="banner">
 
     <div class="graficos">
-        <span class="titulo">Cruzadinha</span>
         <canvas id="myChart" class="chart"></canvas>
-        <span class="zerarEste" onclick="zerar1()">Zerar gráfico</span>
+        <span class="zerarEste">Conversão</span>
       </div>
 
     <div class="graficos">
-        <span class="titulo">Conversão</span>
         <canvas id="myChart2" class="chart"></canvas>
-        <span class="zerarEste" onclick="zerar2()">Zerar gráfico</span>
-      </div>
-
-      <div class="graficos">
-        <span class="titulo">NodeJs</span>
-        <canvas id="myChart3" class="chart"></canvas>
-        <span class="zerarEste" onclick="zerar3()">Zerar gráfico</span>
+        <span class="zerarEste">NodeJs</span>
       </div>
 
     </div>
@@ -46,22 +36,23 @@
     };
 
     var idUsuarioVar = sessionStorage.ID_USUARIO;
-    var conversao = 1;
-    var node = 2;
-    var cruzadinha = 3;
+    var conversaoId = 1;
+    var nodeId = 2;
+    var conversão = 0;
+    var node = 0;
 
-    grafico()
+    graficoConversao()
+    graficoNode()
 
-    function grafico() {
-        fetch("/medidas/grafico", {
+    function graficoConversao() {
+        fetch("/medidas/graficoConversao", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 idUsuarioServer: idUsuarioVar,
-                conversaoServer: conversao,
-                nodeServer: node,
+                conversaoServer: conversaoId,
             })
         }).then(function (resposta) {
             resposta.json().then(function(response){
@@ -69,10 +60,10 @@
                 console.log("resposta: ", resposta);
                 console.log(typeof(response))
 
-                var conversao = response[0].pontos;
-                var node = response[1].pontos;
+                console.log("aaa",response[0].pontos)
 
-                plotarGraficos(conversao, node)
+                conversao = response[0].pontos;
+
             })
 
         }).catch(function (resposta) {
@@ -83,34 +74,47 @@
         return false;
     }
 
+    function graficoNode() {
+      fetch("/medidas/graficoNode", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              idUsuarioServer: idUsuarioVar,
+              nodeServer: nodeId,
+          })
+      }).then(function (resposta) {
+          resposta.json().then(function(response){
+              console.log(response)
+              console.log("resposta: ", resposta);
+              console.log(typeof(response))
+
+              console.log("bbb",response[0].pontos)
+
+              node = response[0].pontos;
+
+              plotarGraficos(conversao, node)
+          })
+
+      }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          // finalizarAguardar();
+      });
+
+      return false;
+  }
+
     function plotarGraficos(conversao, node) {
-  
-    const dados = {
-        labels: [
-        'Restante para o total',
-        'Sua pontuação',
-      ],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [(110 - conversao), conversao],
-        backgroundColor: [
-          'rgb(54, 162, 235)',
-          'rgb(255, 99, 132)'
-        ],
-        hoverOffset: 4
-      }]
-    };
 
-    var a = 90;
-
-    const dados2 = {
+    const conversaoDados = {
         labels: [
           'Sua pontuação',
-          'Quantos pontos faltam para total (110)',
+          'Quanto falta para o total (110)'
         ],
         datasets: [{
           label: 'My First Dataset',
-          data: [a, 110 - a],
+          data: [conversao, (110 - conversao)],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)'
@@ -119,14 +123,14 @@
         }]
       };
 
-      const dados3 = {
+      const nodeDados = {
         labels: [
           'Sua pontuação',
-          'Pontuação total',
+          'Quanto falta para o total (110)'
         ],
         datasets: [{
           label: 'My First Dataset',
-          data: [110, 110],
+          data: [node, (110 - node)],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)'
@@ -134,25 +138,18 @@
           hoverOffset: 4
         }]
       };
-  
+
     const config = {
-      type: 'doughnut',
-      data: dados,
-      options: {}
-    };
-
-    const config2 = {
         type: 'doughnut',
-        data: dados,
+        data: conversaoDados,
         options: {}
     };
 
-    const config3 = {
-        type: 'doughnut',
-        data: dados2,
-      };
-
-
+    const config2 = {
+      type: 'doughnut',
+      data: nodeDados,
+      options: {}
+    };
 
     const myChart = new Chart(
       document.getElementById('myChart'),
@@ -160,15 +157,11 @@
     );
 
     const myChart2 = new Chart(
-      document.getElementById('myChart2'),
-      config2
-    );
-
-    const myChart3 = new Chart(
-      document.getElementById('myChart3'),
-      config3
-    );
+        document.getElementById('myChart2'),
+        config2
+      );
     }
+
   </script>
 
 </html>

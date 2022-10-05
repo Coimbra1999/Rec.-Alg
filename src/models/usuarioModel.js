@@ -35,7 +35,7 @@ function cadastrar(nome, email, senha) {
 
 function pontosConversao(jogoVar, usuarioVar, pontosConversaoVar) {
     var instrucao = `
-    insert into pontuacao value(${jogoVar}, ${usuarioVar}, ${pontosConversaoVar});
+    insert into pontuacao value(${jogoVar}, ${usuarioVar}, ${pontosConversaoVar}, now());
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -43,7 +43,7 @@ function pontosConversao(jogoVar, usuarioVar, pontosConversaoVar) {
 
 function pontosNode(jogoVar, usuarioVar, pontosNodeVar) {
     var instrucao = `
-    insert into pontuacao value(${jogoVar}, ${usuarioVar}, ${pontosNodeVar});
+    insert into pontuacao value(${jogoVar}, ${usuarioVar}, ${pontosNodeVar}, now());
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
